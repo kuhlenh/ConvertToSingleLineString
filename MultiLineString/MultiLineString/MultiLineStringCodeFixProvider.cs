@@ -31,7 +31,6 @@ namespace MultiLineString
 
         public sealed override async Task RegisterCodeFixesAsync(CodeFixContext context)
         {
-
             var diagnostic = context.Diagnostics.First();
 
             // Register a code action that will invoke the fix.
@@ -45,12 +44,12 @@ namespace MultiLineString
 
         private async Task<Document> ConvertToSingleLine(Document document, Diagnostic diagnostic, CancellationToken c)
         {
-            var diagnosticSpan = diagnostic.Location.SourceSpan;
             var root = await document.GetSyntaxRootAsync(c).ConfigureAwait(false);
-            var originalExpr = root.FindNode(diagnosticSpan);
+            var originalExpr = root.FindNode(diagnostic.Location.SourceSpan);
             var token = originalExpr.GetFirstToken();
 
-            string outputString;
+            // trim all that noise (tabs, spaces, newlines)
+            string singleLine;
             using (StringReader reader = new StringReader(token.ValueText))
             using (StringWriter writer = new StringWriter())
             {
@@ -59,10 +58,10 @@ namespace MultiLineString
                 {
                     writer.Write(line.TrimStart() + " ");
                 }
-                outputString = writer.ToString();
+                singleLine = writer.ToString();
             }
 
-            var newToken = SyntaxFactory.Literal(outputString);
+            var newToken = SyntaxFactory.Literal(singleLine);
             var newRoot = root.ReplaceToken(token, newToken);
             
             return document.WithSyntaxRoot(newRoot);
