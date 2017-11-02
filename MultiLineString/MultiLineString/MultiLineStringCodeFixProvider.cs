@@ -29,7 +29,7 @@ namespace MultiLineString
             return WellKnownFixAllProviders.BatchFixer;
         }
 
-        public sealed override async Task RegisterCodeFixesAsync(CodeFixContext context)
+        public sealed override Task RegisterCodeFixesAsync(CodeFixContext context)
         {
             var diagnostic = context.Diagnostics.First();
 
@@ -40,6 +40,8 @@ namespace MultiLineString
                     createChangedDocument: c => ConvertToSingleLine(context.Document, diagnostic, c), 
                     equivalenceKey: title),
                 diagnostic);
+
+            return Task.CompletedTask;
         }
 
         private async Task<Document> ConvertToSingleLine(Document document, Diagnostic diagnostic, CancellationToken c)

@@ -212,6 +212,27 @@ string FRAGMENT_PREAMBLE = ""using System; using System.Collections.Generic; usi
             VerifyCSharpDiagnostic(test);
         }
 
+        [TestMethod]
+        public void TestDiagnostic6()
+        {
+            var test = @"
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Diagnostics;
+
+    namespace ConsoleApplication1
+    {
+        class TypeName
+        {
+            string query = ""SELECT foo, bar \n FROM table \n WHERE id = 42"";
+        }
+    }";
+            VerifyCSharpDiagnostic(test);
+        }
+
         protected override CodeFixProvider GetCSharpCodeFixProvider()
         {
             return new MultiLineStringCodeFixProvider();

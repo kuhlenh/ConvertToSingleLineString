@@ -33,10 +33,15 @@ namespace MultiLineString
 
         private void AnalyzeNode(SyntaxNodeAnalysisContext context)
         {
-            var token = context.Node.GetFirstToken();
-            var containsNewline = token.ValueText.Contains("\n");
+            var node = context.Node;
+            var token = node.GetFirstToken();
+            bool IsMultiLine()
+            {
+                var lineSpan = node.GetLocation().GetLineSpan();
+                return lineSpan.EndLinePosition.Line > lineSpan.StartLinePosition.Line;
+            }
 
-            if (containsNewline)
+            if (IsMultiLine())
             {
                 var diagnostic = Diagnostic.Create(Rule, context.Node.GetLocation());
                 context.ReportDiagnostic(diagnostic);

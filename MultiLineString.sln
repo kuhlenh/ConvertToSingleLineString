@@ -1,13 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27019.1
+VisualStudioVersion = 15.0.27031.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiLineString", "MultiLineString\MultiLineString\MultiLineString.csproj", "{0DB0E01D-F1D9-4E49-84CB-F696EC826C55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiLineString", "MultiLineString\MultiLineString\MultiLineString.csproj", "{0DB0E01D-F1D9-4E49-84CB-F696EC826C55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiLineString.Test", "MultiLineString\MultiLineString.Test\MultiLineString.Test.csproj", "{F9474D17-E272-4541-B923-D0C0B186F1E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiLineString.Test", "MultiLineString\MultiLineString.Test\MultiLineString.Test.csproj", "{F9474D17-E272-4541-B923-D0C0B186F1E8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiLineString.Vsix", "MultiLineString\MultiLineString.Vsix\MultiLineString.Vsix.csproj", "{DCA2D5D6-5099-481B-8B5D-6B3B90523A80}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A77E48C8-584C-4D14-B3D8-23844590955C}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE.txt = LICENSE.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
